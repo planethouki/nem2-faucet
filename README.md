@@ -13,7 +13,7 @@
 $ docker build -t my-nem2-faucet .
 
 # or pull from dockerhub
-$ docker pull 44uk/nem2-faucet:elephant
+$ docker pull 44uk/nem2-faucet:fushicho
 ```
 
 ### Add as service
@@ -23,7 +23,7 @@ $ docker pull 44uk/nem2-faucet:elephant
 ```yaml:docker-compose.yml
 faucet:
   # image: my-nem2-faucet # in case of built image
-  image: 44uk/nem2-faucet:elephant
+  image: 44uk/nem2-faucet:fushicho
   stop_signal: SIGINT
   command: sh -c "/bin/sleep 10 && /bin/sh /app/bin/create-env.sh && /usr/local/bin/npm start"
   environment:
@@ -44,7 +44,7 @@ faucet:
 
 ```yaml:docker-compose.yml
 faucet:
-  image: 44uk/nem2-faucet:elephant
+  image: 44uk/nem2-faucet:fushicho
   stop_signal: SIGINT
   environment:
     - NEM_NETWORK=MIJIN_TEST
@@ -62,7 +62,7 @@ faucet:
 
 ```yaml:docker-compose.yml
 faucet:
-  image: 44uk/nem2-faucet:elephant
+  image: 44uk/nem2-faucet:fushicho
   stop_signal: SIGINT
   environment:
     - NEM_NETWORK=MIJIN_TEST
@@ -105,6 +105,7 @@ If you want to use ReCaptcha, set both variables `RECAPTCHA_CLIENT_SECRET` and `
 # * NEM_OUT_MIN
 # * NEM_OUT_OPT
 # * NEM_MAX_FEE
+# * NEM_MAX_TRANSACTION_DEADLINE
 # * NEM_ENOUGH_BALANCE
 # * NEM_MAX_UNCONFIRMED
 # * NEM_WAIT_HEIGHT

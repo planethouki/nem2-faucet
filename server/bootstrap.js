@@ -1,4 +1,7 @@
-const nem = require('nem2-sdk')
+const {
+  Account,
+  NetworkType
+} = require('nem2-sdk')
 
 const API_URL = process.env.NEM_API_URL || 'http://localhost:3000'
 const PUBLIC_URL = process.env.NEM_PUBLIC_URL || API_URL
@@ -11,6 +14,7 @@ const OUT_MIN = parseInt(process.env.NEM_OUT_MIN || 100000000)
 const OUT_MAX = parseInt(process.env.NEM_OUT_MAX || 500000000)
 const OUT_OPT = parseInt(process.env.NEM_OUT_OPT || parseInt((OUT_MAX + OUT_MIN) / 2))
 const MAX_FEE = parseInt(process.env.NEM_MAX_FEE || 0)
+const MAX_TRANSACTION_DEADLINE = parseInt(process.env.NEM_MAX_TRANSACTION_DEADLINE || 1439)
 const ENOUGH_BALANCE = parseInt(process.env.NEM_ENOUGH_BALANCE || '100000000000')
 const WAIT_HEIGHT = parseInt(process.env.NEM_WAIT_HEIGHT || '0')
 const MAX_UNCONFIRMED = parseInt(process.env.NEM_MAX_UNCONFIRMED || '99')
@@ -19,9 +23,9 @@ const RECAPTCHA_ENDPOINT = 'https://www.google.com/recaptcha/api/siteverify'
 const RECAPTCHA_CLIENT_SECRET = process.env.RECAPTCHA_CLIENT_SECRET || undefined
 const RECAPTCHA_SERVER_SECRET = process.env.RECAPTCHA_SERVER_SECRET || undefined
 
-const FAUCET_ACCOUNT = nem.Account.createFromPrivateKey(
+const FAUCET_ACCOUNT = Account.createFromPrivateKey(
   process.env.NEM_PRIVATE_KEY,
-  nem.NetworkType[process.env.NEM_NETWORK]
+  NetworkType[process.env.NEM_NETWORK]
 )
 
 const config = {
@@ -37,6 +41,7 @@ const config = {
   OUT_MAX,
   OUT_OPT,
   MAX_FEE,
+  MAX_TRANSACTION_DEADLINE,
   ENOUGH_BALANCE,
   WAIT_HEIGHT,
   MAX_UNCONFIRMED,
